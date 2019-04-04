@@ -1,0 +1,37 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>定时任务</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>jsondata</name>
+          <description></description>
+          <defaultValue>{&quot;timing_title&quot;: &quot;\u6d4b\u8bd5\u8c03\u8bd5&quot;, &quot;timing_data&quot;: {&quot;timing_cycle&quot;: &quot;minute&quot;, &quot;start_time&quot;: &quot;2&quot;}, &quot;email_id&quot;: &quot;41850&quot;, &quot;timing_count&quot;: 1, &quot;plugin_id&quot;: &quot;P-1808160009&quot;, &quot;is_run&quot;: &quot;1&quot;, &quot;host_id&quot;: &quot;ENV-2018100004&quot;, &quot;task_id&quot;: &quot;TASK-20180711141704&quot;}</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>H/2 * * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo &quot;开始测试&quot;
+curl -X POST  http://127.0.0.1:7702/timetask/exe -H &apos;Content-Type: application/json&apos;  -d &quot;$jsondata&quot;</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+    </project>
